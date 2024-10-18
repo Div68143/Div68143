@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seat Booking</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Select Your Seat for Event {{ event_name }}</h1>
+    <div class="seat-container">
+        <div id="seats">
+            <!-- This will be dynamically populated with seats -->
+            {% for row in seats %}
+                <div class="row">
+                    {% for seat in row %}
+                        <div class="seat {% if seat.booked %}booked{% else %}available{% endif %}"
+                             data-seat-id="{{ seat.id }}">{{ seat.number }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <button id="auto-assign">Auto Assign Seat</button>
+    <script src="/static/app.js"></script>
+</body>
+</html>
